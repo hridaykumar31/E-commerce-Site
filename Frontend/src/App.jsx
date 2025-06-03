@@ -5,21 +5,32 @@ import Login from './components/Login';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth} from './context/AuthContext';
 import AdminLogin from './components/Admin/AdminLogin';
-
-function App() {
+import Footer from './components/Footer';
+const Layouts = () => {
+  const { user } = useAuth();
+  const role = user ? user.role : null;
   return (
-    <AuthProvider>
-        <Navbar />
+    <>
+    <Navbar />
         <Routes>
+          <Route path="/" element={<Navigate to={role === 'admin' ? '/admin/dashboard' : '/dashboard'} />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
         </Routes>
+        <Footer />
+       
+    </>
+  )
+}
+function App() {
+  return (
+    <AuthProvider>
+        <Layouts />
     </AuthProvider>
   );
 }
