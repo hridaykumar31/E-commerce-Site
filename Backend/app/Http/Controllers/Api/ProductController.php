@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index() {
-     response()->json(Product::with('tags')->get());
+    $products = Product::with('tags')->get();
+    return response()->json([
+      'products' => $products,
+      'message' => 'All products fetched successfully',
+     ], 200);
    }
 
 

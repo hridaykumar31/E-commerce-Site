@@ -7,17 +7,30 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function store(Request $request) {
-        
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-        $category = Category::create($validated);
-        
-         return response()->json([
-        'message' => 'Category added successfully',
-        'category' => $category ,
-    ], 201);
+    function index() {
+    $category = Category::all();
 
+    return response()->json([
+      'category' => $category,
+      'message' => 'All category fetched successfully',
+     ], 200);
     }
+    public function store(Request $request) {
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+            'description' => 'nullable|string|max:1000'
+        ]);
+
+       $category = Category::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description', null),
+       ]);
+
+        return response()->json([
+            'message' => 'Category added successfully',
+            'category' => $category,
+        ], 201);
+    }
+
 }

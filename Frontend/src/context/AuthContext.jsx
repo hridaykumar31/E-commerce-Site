@@ -11,9 +11,9 @@ export const AuthProvider = ({ children }) => {
     if(token && !user) {
 
       const apiCall = role === 'admin' ? getAdminAPI : getUserAPI;
-      console.log('User Details:', user);
+      //console.log('User Details:', user);
       apiCall(token).then((response) => {
-        console.log('User Data:', response.data);
+        //console.log('User Data:', response.data);
         setUser(response.data.authenticateUser);
       }).catch((error) => {
         console.log('Error fetching user data:', error);

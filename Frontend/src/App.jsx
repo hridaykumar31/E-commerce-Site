@@ -8,6 +8,9 @@ import Navbar from './components/Navbar';
 import { AuthProvider, useAuth} from './context/AuthContext';
 import AdminLogin from './components/Admin/AdminLogin';
 import Footer from './components/Footer';
+import Product from './components/Product';
+import Category from './components/Category';
+import Tag from './components/Tag';
 const Layouts = () => {
   const { user } = useAuth();
   const role = user ? user.role : null;
@@ -21,6 +24,9 @@ const Layouts = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/add/product" element={<Product />} />
+          <Route path="/add/category" element={<Category />} />
+          <Route path="/add/tag" element={<Tag />} />
         </Routes>
         <Footer />
        

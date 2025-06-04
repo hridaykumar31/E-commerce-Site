@@ -23,11 +23,11 @@ const Login = () => {
         login(response.data.token, user);
         const user_role = response.data.user.role;
         if(user_role === 'user') {
-          console.log("User logged in sucessfully");
+          //console.log("User logged in sucessfully");
           navigate('/dashboard');
         }
         else {
-          console.log("Admin logged in successfully");
+          //console.log("Admin logged in successfully");
           navigate('/admin/dashboard');
         }
         

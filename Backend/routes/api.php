@@ -59,8 +59,12 @@ use App\Http\Controllers\Api\OrderController;
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
     Route::post('/tags', [TagController::class, 'store']);
+    Route::get('/tags', [TagController::class, 'index']);
+
 
     Route::post('/categories', [CategoryController::class, 'store']);
+    Route::get('/categories', [CategoryController::class, 'index']);
+
 
     });
 
