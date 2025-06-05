@@ -27,8 +27,8 @@ Api.get('/categories', {
 
 export const addProductAPI  = (data, token) =>
 Api.post('/products', data, {
-    headers: { Authorization: `Bearer ${token}` },
-
+    headers: { Authorization: `Bearer ${token}` ,
+        'Content-Type': 'multipart/form-data',},
 });
 export const getAllProductAPI  = (token) =>
 Api.get('/products', {
@@ -46,3 +46,19 @@ Api.get('/tags', {
     headers: { Authorization: `Bearer ${token}` },
 
 });
+
+export const getProductByIdAPI = (id, token) =>
+Api.get(`/products/${id}`, 
+    { headers: { Authorization: `Bearer ${token}` } });
+
+export const updateProductAPI = (id, data, token) =>
+  Api.post(`/products/${id}?_method=PATCH`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+export const deleteProductAPI = (id, token) =>
+    Api.delete(`/products/${id}`, {
+        headers: { Authorization: `Bearer ${token}`},
+    })

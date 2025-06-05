@@ -12,6 +12,25 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\OrderController;
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/test-image/{filename}', function ($filename) {
+    $filename = trim($filename); // remove trailing spaces/newlines
+
+    $path = storage_path('app/public/products/' . $filename);
+
+    if (!file_exists($path)) {
+        return response()->json(['error' => 'File not found', 'path' => $path], 404);
+    }
+
+    return response()->file($path);
+});
+
+
+      
+
+
+  
     //All Route for user auth Task-2
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);

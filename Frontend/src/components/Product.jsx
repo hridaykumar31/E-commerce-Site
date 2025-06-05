@@ -23,7 +23,7 @@ const Product = () => {
             const token = localStorage.getItem('token');
             const response = await getAllTagAPI(token);
             setTags(response.data.tags);
-            console.log('Tags fetched ', response.data.tags);
+            //console.log('Tags fetched ', response.data.tags);
 
         } catch (error) {
             console.error('Error fetching Tags:', error);
@@ -33,11 +33,11 @@ const Product = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await getAllCategoryAPI(token);
-            setCategories(response.data.tags);
-            console.log('Tags fetched ', response.data.categories);
+            setCategories(response?.data?.category || []);
+            console.log('Category fetched ', response.data.category);
 
         } catch (error) {
-            console.error('Error fetching Tags:', error);
+            console.error('Error fetching Category:', error);
         }
     }
     fetchTags();
@@ -62,7 +62,7 @@ const Product = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await addProductAPI(product, token);
-      console.log('Tag added successfully:', response.data);
+      console.log('Product added successfully:', response.data);
       setProduct({
         name: '',
         price: '',
@@ -89,9 +89,19 @@ const Product = () => {
     })
   }
 
+  const handleCategorySelect = (e) => {
+    const selectedOption = parseInt(e.target.value);
+    setProduct((prev) => {
+      return {
+        ...prev,
+        category_id: selectedOption,
+      }
+    })
+  }
+
   return (
-    <div className='min-h-svh  Category max-w-full mx-auto mt-10 p-6 bg-white shadow-md rounded-md'>
-      <h1 className='text-2xl'>Add Tag</h1>
+    <div className='min-h-svh  Category max-w-full mx-auto mt-2 p-6 bg-white shadow-md rounded-md'>
+      <h1 className='text-2xl'>Add New Product</h1>
       <form onSubmit={handleSubmit} className='mt-4'>
 
         <div className='mb-4'>
@@ -137,7 +147,7 @@ const Product = () => {
             type='number'
             name='stock'
             onChange={handleChange}
-            value={product.name}
+            value={product.stock}
             className='w-full border px-3 py-2 rounded'
             placeholder='Enter Product Stock Number'
             required
@@ -147,19 +157,31 @@ const Product = () => {
           <div className='mb-4'>
           <label className='mb-2 block'>Product SKU</label>
           <input
-            type='number'
+            type='text'
             name='sku'
             onChange={handleChange}
-            value={product.name}
+            value={product.sku}
             className='w-full border px-3 py-2 rounded'
             placeholder='Enter Product Sku'
             required
           />
          </div>
 
+         <div className='mb-4'>
+          <label className='mb-2 block'>Product Image</label>
+              <input type='file' name='image' onChange={(e) => setProduct((prev) => (
+                {
+                  ...prev,
+                  image: e.target.files[0],
+                }
+              ))}
+            accept='image/*' className='w-full border px-3 py-2 rounded'
+            placeholder='Enter Product Sku'/>
+         </div>
+
         </div>
          <div className='mb-4'>
-          <label className='block mb-1'>Assign Products</label>
+          <label className='block mb-1'>Select multiple tag</label>
           <select
             multiple
             onChange={handleTagSelect}
@@ -171,13 +193,28 @@ const Product = () => {
               </option>
             ))}
           </select>
-        </div>
+         </div>
+
+         <div className='mb-4'>
+          <label className='block mb-1'>Select Category</label>
+          <select
+            name='category_id'
+            onChange={handleCategorySelect}
+            className='w-full border px-3 py-2 rounded h-32'
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+         </div>
 
         <button
           type='submit'
           className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-400'
         >
-          Add Tag
+          Add Product
         </button>
       </form>
     </div>

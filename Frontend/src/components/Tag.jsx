@@ -45,14 +45,14 @@ const Tag = () => {
       const token = localStorage.getItem('token');
       const response = await addTagAPI(tag, token);
       console.log('Tag added successfully:', response.data);
-      setTag({
-        name: '',
-        description: '',
-        product_ids: [],
-      })
+      // setTag({
+      //   name: '',
+      //   description: '',
+      //   product_ids: [],
+      // })
 
     } catch (error) {
-       console.error('Error adding tag:', error);
+       console.error('Error adding product:', error);
     }
   }
 
