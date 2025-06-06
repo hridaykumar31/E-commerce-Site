@@ -27,7 +27,7 @@ const Navbar = () => {
         {user ? (
           userRole === 'admin' ? (
             <>
-              <Link to="/dashboard" className="hover:underline">Dashboard</Link>
+              <Link to="/admin/dashboard" className="hover:underline">Dashboard</Link>
               <button onClick={handleLogout} className="bg-red-500 px-3 py-1 rounded hover:bg-red-600">Logout</button>
             </>
           ) : (

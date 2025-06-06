@@ -22,7 +22,7 @@ class ProductController extends Controller
     try {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'sku' => 'required|unique:products,sku',
@@ -32,9 +32,9 @@ class ProductController extends Controller
             'tag_ids.*' => 'exists:tags,id',
         ]);
 
-        if($request->hasFile('image')) {
-            $imageName = time().'_'.$request->image->getClientOriginalName();
-            $path = $request->image->storeAs('products', $imageName, 'public');
+        if($request->hasFile('image')) {  
+            $imageName = time() . '_' . $request->image->getClientOriginalName();
+            $request->image->storeAs('products', $imageName, 'public');
             $validated['image'] = $imageName;
         }
 

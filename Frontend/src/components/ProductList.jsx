@@ -45,6 +45,10 @@ const ProductList = () => {
     console.log('Edit product with ID:', productId);
     navigate(`/product/edit/${productId}`);
   };
+  const handelProduct = () => {
+    console.log('Add new product');
+    navigate('/add/product');
+  }
 
   const handleDelete = async (productId) => {
     if (window.confirm(`Are you sure you want to delete product with ID: ${productId}?`)) {
@@ -198,7 +202,7 @@ const ProductList = () => {
           className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-400 w-full sm:max-w-xs text-lg"
         />
         {/* You could add an "Add New Product" button here */}
-        <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+      <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-lg shadow-md transition duration-300 transform hover:scale-105" onClick={handelProduct}>
           Add New Product
         </button>
       </div>

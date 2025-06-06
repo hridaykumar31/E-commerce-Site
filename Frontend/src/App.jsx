@@ -13,6 +13,7 @@ import Category from './components/Category';
 import Tag from './components/Tag';
 import ProductList from './components/ProductList';
 import EditProduct from './components/EditProduct';
+import Home from './components/Home';
 const Layouts = () => {
   const { user } = useAuth();
   const role = user ? user.role : null;
@@ -20,7 +21,8 @@ const Layouts = () => {
     <>
     <Navbar />
         <Routes>
-          <Route path="/" element={<Navigate to={role === 'admin' ? '/admin/dashboard' : '/dashboard'} />} />
+          <Route path="/" element={<Navigate to={role === 'admin' ? '/admin/dashboard' : '/home'} />} />
+           <Route path="/home" element={<Home />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -31,6 +33,7 @@ const Layouts = () => {
           <Route path="/add/product" element={<Product />} />
           <Route path="/products" element={<ProductList />} /> 
           <Route path="/product/edit/:id" element={<EditProduct />} />
+
 
         </Routes>
         <Footer />

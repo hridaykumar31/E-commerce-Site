@@ -17,7 +17,7 @@ const AdminDashboard = () => {
   const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
   const menuItems = [
-    { icon: <FaTachometerAlt />, label: 'Dashboard', to: '/dashboard' },
+    { icon: <FaTachometerAlt />, label: 'Dashboard', to: '/admin/dashboard' },
     { icon: <FaBox />, label: 'Products', to: '/products' },
     { icon: <FaShoppingCart />, label: 'Orders', to: '/orders' },
     { icon: <FaUsers />, label: 'Users', to: '/users' },
