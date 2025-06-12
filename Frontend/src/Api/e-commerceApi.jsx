@@ -14,10 +14,10 @@ export const getAdminAPI  = (token) =>
 Api.get('/admin', {
     headers: { Authorization: `Bearer ${token}` },
 });
-export const addCategoryAPI  = (data, token) =>
-Api.post('/categories', data, {
-    headers: { Authorization: `Bearer ${token}` },
-
+export const addCategoryAPI  = (formData, token) =>
+Api.post('/categories', formData, {
+    headers: { Authorization: `Bearer ${token}`,
+        'Content-Type' : 'multipart/form-data' },
 });
 export const getAllCategoryAPI  = (token) =>
 Api.get('/categories', {

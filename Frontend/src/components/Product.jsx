@@ -176,7 +176,7 @@ const Product = () => {
                 }
               ))}
             accept='image/*' className='w-full border px-3 py-2 rounded'
-            placeholder='Enter Product Sku'/>
+            placeholder='Enter Image url'/>
          </div>
 
         </div>

@@ -36,7 +36,6 @@ const Home = () => {
     { id: 2, name: 'Sneakers', price: '$79', image: 'https://via.placeholder.com/200?text=Sneakers' },
     { id: 3, name: 'LED Lamp', price: '$49', image: 'https://via.placeholder.com/200?text=Lamp' }
   ];
-
   const topVendors = [
     { id: 1, name: 'TechZone', logo: 'https://via.placeholder.com/100?text=TZ' },
     { id: 2, name: 'StyleHub', logo: 'https://via.placeholder.com/100?text=SH' }
