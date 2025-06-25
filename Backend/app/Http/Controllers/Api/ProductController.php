@@ -83,7 +83,7 @@ public function update(Request $request, $id){
         ]);
         if($product->image) {
          Storage::disk('public')->delete('products/' . $product->image);
-      }
+        }
 
         if($request->hasFile('image')) {
            

@@ -22,9 +22,8 @@ class CommentController extends Controller
         $comment = $post->comments()->create([
             'body' => $request->body,
             'user_id' => $auth_id,
+
         ]);
-         
-        
 
         return response()->json([
             'message' => 'Comment added successfully',
@@ -32,4 +31,6 @@ class CommentController extends Controller
         ], 200);
 
     }
+    
 }
+

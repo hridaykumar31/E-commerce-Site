@@ -26,7 +26,6 @@ class TagController extends Controller
         ]);
         $tag = Tag::create($validated);
     
-
         if(!empty($validated['product_ids'])) {
           
            $tag->products()->attach($validated['product_ids']);

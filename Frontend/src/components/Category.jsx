@@ -28,9 +28,12 @@ const Category = () => {
       alert('Failed to add category');
     }
   };
-
+  
   return (
     <div className='min-h-svh  Category max-w-full mx-auto mt-10 p-6 bg-white shadow-md rounded-md'>
+      <div className=''>
+
+      </div>
       <h1 className='text-2xl'>Add Category</h1>
       <form onSubmit={handleSubmit} className='mt-4'>
         <div className='mb-4'>

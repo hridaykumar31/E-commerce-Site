@@ -14,20 +14,29 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\OrderController;
 use Illuminate\Support\Facades\Storage;
 
-Route::get('/test-image/{filename}', function ($filename) {
-    $filename = trim($filename); // remove trailing spaces/newlines
 
-    $path = storage_path('app/public/products/' . $filename);
+    Route::get('/test-image/{filename}', function ($filename) {
+    $filename = trim($filename); 
 
-    if (!file_exists($path)) {
-        return response()->json(['error' => 'File not found', 'path' => $path], 404);
+    $productPath = storage_path('app/public/products/' . $filename);
+    $categoryPath = storage_path('app/public/categories/' . $filename);
+
+    if(file_exists($productPath)) {
+        return response()->file($productPath);
     }
 
-    return response()->file($path);
+    if(file_exists($categoryPath)) {
+        return response()->file($categoryPath);
+    }
+
+    return response()->json([
+        'error' => 'File not found',
+        'filename' => $filename,
+        'product_path' => $productPath,
+        'category_path' => $categoryPath,
+    ], 404);
 });
 
-
-      
 
 
   
@@ -83,6 +92,10 @@ Route::get('/test-image/{filename}', function ($filename) {
 
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories/{id}', [CategoryController::class, 'show']);
+    Route::patch('/categories/{id}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+    
 
 
     });

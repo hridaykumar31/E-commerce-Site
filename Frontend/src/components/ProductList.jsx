@@ -19,6 +19,7 @@ const ProductList = () => {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState([]);
   const navigate = useNavigate(); 
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,8 +41,7 @@ const ProductList = () => {
 
   // --- Handle Edit and Delete Actions (Placeholder Functions) ---
   const handleEdit = (productId) => {
-    // In a real application, you'd likely navigate to an edit form
-    // or open a modal for editing the product.
+
     console.log('Edit product with ID:', productId);
     navigate(`/product/edit/${productId}`);
   };
@@ -66,6 +66,7 @@ const ProductList = () => {
         alert('Failed to delete product.');
       }
     }
+    
   };
   // ----------------------------------------------------------------
 
@@ -92,6 +93,7 @@ const ProductList = () => {
       />
 
         );
+
       },
         enableSorting: false,
       },
@@ -117,6 +119,8 @@ const ProductList = () => {
             {info.getValue()}
           </span>
         ),
+        
+
       },
       {
         accessorKey: 'description',

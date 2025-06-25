@@ -20,6 +20,7 @@ const AdminDashboard = () => {
     { icon: <FaTachometerAlt />, label: 'Dashboard', to: '/admin/dashboard' },
     { icon: <FaBox />, label: 'Products', to: '/products' },
     { icon: <FaShoppingCart />, label: 'Orders', to: '/orders' },
+    { icon: <FaShoppingCart />, label: 'Categories', to: '/categories' },
     { icon: <FaUsers />, label: 'Users', to: '/users' },
     { icon: <FaCog />, label: 'Settings', to: '/settings' },
   ];
